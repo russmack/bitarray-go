@@ -125,3 +125,30 @@ func Test_FromNumber(t *testing.T) {
 		}
 	}
 }
+
+func Test_FromBinary(t *testing.T) {
+	tests := []struct {
+		input  string
+		expect uint64
+	}{
+		{"0", 0},
+		{"1", 1},
+		{"10", 2},
+		{"11", 3},
+		{"101", 5},
+		{"00001000", 8},
+		{"00000000", 0},
+		{"11111111", 255},
+		{"10011011", 155},
+	}
+
+	for _, j := range tests {
+		a := NewBitArray(1)
+		a.FromBinary(j.input)
+		actual := a.AsNumber()
+		if actual != j.expect {
+			t.Errorf("For %s, expected %d, got %d.", j.input, j.expect, actual)
+		}
+	}
+
+}
