@@ -2,7 +2,7 @@
 
 A bit array written in Go.
 
-[![Build Status](https://tracis-ci.org/russmack/bitarray-go.svg?branch=master)](https://tracis-ci.org/russmack/bitarray-go)
+[![Build Status](https://travis-ci.org/russmack/bitarray-go.svg?branch=master)](https://tracis-ci.org/russmack/bitarray-go)
 
 ---
 
