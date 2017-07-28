@@ -2,8 +2,6 @@ package bitarraygo
 
 import (
 	"testing"
-
-	"fmt"
 )
 
 func Test_Set_on(t *testing.T) {
