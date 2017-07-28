@@ -30,7 +30,7 @@ func (a *BitArray) Set(i uint64, b bool) *BitArray {
 	if b == true {
 		a.words[0] |= 1 << i
 	} else {
-		a.words[0] ^= 1 << i
+		a.words[0] &^= 1 << i
 	}
 	return a
 }

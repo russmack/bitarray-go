@@ -2,6 +2,8 @@ package bitarraygo
 
 import (
 	"testing"
+
+	"fmt"
 )
 
 func Test_Set_on(t *testing.T) {
@@ -30,15 +32,15 @@ func Test_Set_off(t *testing.T) {
 		input  uint64
 		expect uint64
 	}{
-		{0, 254},
-		{1, 253},
-		{2, 251},
-		{3, 247},
+		{0, 170},
+		{1, 168},
+		{2, 170},
+		{3, 162},
 	}
 
 	for _, j := range tests {
 		a := NewBitArray(1)
-		a.FromNumber(255)
+		a.FromNumber(170)
 		a.Set(j.input, false)
 		actual := a.AsNumber()
 		if actual != j.expect {
