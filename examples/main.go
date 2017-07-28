@@ -9,32 +9,23 @@ import (
 func main() {
 	fmt.Println("Bit array.")
 
-	numBits := 8 * 4
-	_ = numBits
-	b := bitarraygo.NewBitArray(1)
+	// Currently only supporting arrays of up to 18446744073709551614 bits
+	// so this argument to NewBitArray is being ignored for now.
+	numBits := uint64(8 * 4)
+	b := bitarraygo.NewBitArray(numBits)
 
 	i := 2
 	n := uint64(i)
-	b.Set(n)
-	fmt.Printf("Set %d: %b\n", n, b)
 
-	got := b.Get(0)
-	fmt.Println("got:", got)
+	b.Set(n, true)
+	fmt.Printf("Set %d: %b\n", n, b.AsNumber())
 
-	got = b.Get(1)
-	fmt.Println("got:", got)
+	got := b.Get(n)
+	fmt.Printf("Get %d: %t\n", n, got)
 
-	got = b.Get(2)
-	fmt.Println("got:", got)
-
-	got = b.Get(3)
-	fmt.Println("got:", got)
-
-	got = b.Get(4)
-	fmt.Println("got:", got)
-
-	fmt.Printf("pre : %b\n", b)
-	b.Flip(1)
-	fmt.Printf("post: %b\n", b)
+	n = 1
+	fmt.Printf("Pre-flip: %b\n", b.AsNumber())
+	b.Flip(n)
+	fmt.Printf("Post-flip: %b\n", b.AsNumber())
 
 }
