@@ -1,6 +1,10 @@
 // Package bitarraygo is a bit array with methods to manipulate it.
 package bitarraygo
 
+import (
+	"fmt"
+)
+
 // BitArray is the structure representing the... bit array.
 type BitArray struct {
 	words []uint64
@@ -18,6 +22,10 @@ func NewBitArray(n uint64) *BitArray {
 // AsNumber returns the value of the bit array as a number.
 func (a *BitArray) AsNumber() uint64 {
 	return a.words[0]
+}
+
+func (a *BitArray) AsString() string {
+	return fmt.Sprintf("%b", a.words[0])
 }
 
 // FromNumber sets the bits of the bit array according to a specified number.

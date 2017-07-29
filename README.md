@@ -16,7 +16,8 @@ go run examples/main.go
 ## Methods
 
 - [X] FromNumber
-- [X] ToNumber
+- [X] AsNumber
+- [X] AsString
 - [X] FromBinary
 - [X] Set
 - [X] Get

@@ -150,5 +150,100 @@ func Test_FromBinary(t *testing.T) {
 			t.Errorf("For %s, expected %d, got %d.", j.input, j.expect, actual)
 		}
 	}
+}
 
+func Test_AsNumber(t *testing.T) {
+	tests := []struct {
+		input  uint64
+		expect uint64
+	}{
+		{0, 0},
+		{1, 1},
+		{2, 2},
+		{10, 10},
+		{123, 123},
+		{255, 255},
+		{1024, 1024},
+	}
+
+	for _, j := range tests {
+		a := NewBitArray(1)
+		a.FromNumber(j.input)
+		actual := a.AsNumber()
+		if actual != j.expect {
+			t.Errorf("For %s, expected %d, got %d.", j.input, j.expect, actual)
+		}
+	}
+}
+
+func Test_AsString(t *testing.T) {
+	tests := []struct {
+		input  uint64
+		expect string
+	}{
+		{0, "0"},
+		{1, "1"},
+		{2, "10"},
+		{3, "11"},
+		{5, "101"},
+		{8, "1000"},
+		{0, "0"},
+		{255, "11111111"},
+		{155, "10011011"},
+	}
+
+	for _, j := range tests {
+		a := NewBitArray(1)
+		a.FromNumber(j.input)
+		actual := a.AsString()
+		if actual != j.expect {
+			t.Errorf("For %s, expected %d, got %d.", j.input, j.expect, actual)
+		}
+	}
+}
+
+// Benchmarking.
+
+func Benchmark_FromBinary(b *testing.B) {
+	b.ReportAllocs()
+
+	a := NewBitArray(1)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		a.FromBinary("10101010")
+	}
+}
+
+func Benchmark_Set(b *testing.B) {
+	b.ReportAllocs()
+
+	a := NewBitArray(1)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		a.Set(5, true)
+	}
+}
+
+func Benchmark_Get(b *testing.B) {
+	b.ReportAllocs()
+
+	a := NewBitArray(1)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = a.Get(5)
+	}
+}
+
+func Benchmark_Flip(b *testing.B) {
+	b.ReportAllocs()
+
+	a := NewBitArray(1)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		a.Flip(5)
+	}
 }
