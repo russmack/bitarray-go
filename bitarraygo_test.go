@@ -131,6 +131,8 @@ func Test_FromBinary(t *testing.T) {
 		input  string
 		expect uint64
 	}{
+		{"", 0},
+		{"x", 0},
 		{"0", 0},
 		{"1", 1},
 		{"10", 2},
